@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clinical Portal | Auth</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div id="login-section">
+                <div class="auth-header">
+                    <h2>Welcome Back</h2>
+                    <p>Enter your clinical credentials</p>
+                </div>
+                <form onsubmit="handleLogin(event)" class="single-col-form">
+                    <div class="input-field">
+                        <label>Email</label>
+                        <input type="email" id="logEmail" required>
+                    </div>
+                    <div class="input-field">
+                        <label>Password</label>
+                        <input type="password" id="logPass" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Sign In</button>
+                    <p class="toggle-text">Need an account? <span onclick="toggleAuth()">Create Register</span></p>
+                </form>
+            </div>
+
+            <div id="register-section" style="display: none;">
+                <div class="auth-header">
+                    <h2>Staff Registration</h2>
+                    <p>Create your secure account</p>
+                </div>
+                <form onsubmit="handleRegister(event)" class="aligned-grid">
+                    <div class="input-field"><label>Name</label><input type="text" required></div>
+                    <div class="input-field"><label>Email</label><input type="email" id="regEmail" required></div>
+                    <div class="input-field"><label>Password</label><input type="password" id="regPass" required></div>
+                    <div class="input-field"><label>Confirm</label><input type="password" required></div>
+                    <div class="full-width">
+                        <button type="submit" class="btn-primary">Complete Register</button>
+                        <p class="toggle-text">Already registered? <span onclick="toggleAuth()">Login</span></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleAuth() {
+            const l = document.getElementById('login-section'), r = document.getElementById('register-section');
+            l.style.display = l.style.display === 'none' ? 'block' : 'none';
+            r.style.display = r.style.display === 'none' ? 'block' : 'none';
+        }
+        function handleRegister(e) {
+            e.preventDefault();
+            localStorage.setItem("userEmail", document.getElementById('regEmail').value);
+            localStorage.setItem("userPass", document.getElementById('regPass').value);
+            alert("Registration saved! Redirecting to login...");
+            toggleAuth();
+        }
+        function handleLogin(e) {
+            e.preventDefault();
+            if(document.getElementById('logEmail').value === localStorage.getItem("userEmail")) {
+                window.location.href = "input.html";
+            } else { alert("User not found. Please register."); }
+        }
+    </script>
+</body>
+</html>

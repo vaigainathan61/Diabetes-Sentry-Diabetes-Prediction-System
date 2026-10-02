@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>DIABETES SENTRY | Professional Diagnostic</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* iPad Dashboard Download Button Fix */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+            .download-wrapper {
+                display: flex;
+                justify-content: center;
+                margin-top: 15px;
+            }
+
+            #download-btn {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="app-wrapper">
+
+        <section id="auth-section" class="active">
+            <div id="login-box" class="glass-card login-box">
+                <div class="logo">🧬 <span>SENTRY</span></div>
+                <h2>Clinical Login</h2>
+                <div id="login-error" class="error-msg hidden">⚠️ Invalid Credentials</div>
+                <form id="login-form">
+                    <input type="email" id="login-email" placeholder="Email Address" required>
+                    <input type="password" id="login-pass" placeholder="Password" required>
+                    <button type="submit" class="main-btn">Authorize Access</button>
+                </form>
+                <p class="toggle-text">New user? <a href="#" onclick="toggleAuth()">Create account</a></p>
+            </div>
+
+            <div id="register-box" class="glass-card login-box hidden">
+                <div class="logo">🧬 <span>SENTRY</span></div>
+                <h2>Create Account</h2>
+                <form id="register-form">
+                    <input type="text" id="reg-name" placeholder="Full Name" required>
+                    <input type="email" id="reg-email" placeholder="Email Address" required>
+                    <input type="password" id="reg-pass" placeholder="Password" required>
+                    <input type="password" id="reg-confirm" placeholder="Confirm Password" required>
+                    <button type="submit" class="main-btn">Register</button>
+                </form>
+                <p class="toggle-text">Already have an account? <a href="#" onclick="toggleAuth()">Login here</a></p>
+            </div>
+        </section>
+
+
+        <section id="input-section">
+            <div class="glass-card wide">
+                <header class="section-header">
+                    <h2>Patient Parameters</h2>
+                    <span class="badge">Biometric Entry</span>
+                </header>
+                <form id="prediction-form" class="grid-form">
+                    <div class="input-field"><label>Pregnancies</label><input type="number" id="Pregnancies" value="1">
+                    </div>
+                    <div class="input-field"><label>Glucose</label><input type="number" id="Glucose" value="110"></div>
+                    <div class="input-field"><label>Blood Pressure</label><input type="number" id="BloodPressure"
+                            value="70"></div>
+                    <div class="input-field"><label>Skin Thickness</label><input type="number" id="SkinThickness"
+                            value="20"></div>
+                    <div class="input-field"><label>Insulin</label><input type="number" id="Insulin" value="79"></div>
+                    <div class="input-field"><label>BMI</label><input type="number" step="0.1" id="BMI" value="23.5">
+                    </div>
+                    <div class="input-field"><label>Pedigree</label><input type="number" step="0.01"
+                            id="DiabetesPedigreeFunction" value="0.45"></div>
+                    <div class="input-field"><label>Age</label><input type="number" id="Age" value="33"></div>
+                    <button type="submit" class="main-btn full">Execute ML Analysis</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="dashboard-section">
+            <div class="dashboard-layout">
+                <div class="glass-card center">
+                    <div class="back-button" onclick="showSection('input-section')">
+                        &#x2B05; Back
+                    </div>
+
+                    <h3>Risk Probability</h3>
+                    <div class="gauge-wrapper">
+                        <canvas id="gaugeChart"></canvas>
+                        <div class="gauge-labels">
+                            <span>LOW</span>
+                            <span>MEDIUM</span>
+                            <span>HIGH</span>
+                        </div>
+                    </div>
+                    <h1 id="result-text">--</h1>
+                    <div class="status-pill" id="risk-pill">Analyzing...</div>
+                </div>
+
+                <div class="stats-column">
+                    <div class="glass-card">
+                        <h3>Factor Impact (SHAP)</h3>
+                        <canvas id="barChart"></canvas>
+                    </div>
+                    <div class="glass-card">
+                        <h3>Clinical Recommendations</h3>
+                        <ul id="rec-list" class="medical-list"></ul>
+                        <button onclick="showSection('input-section')" class="secondary-btn">New Assessment</button>
+                        <div class="download-wrapper">
+                            <button id="download-btn" class="main-btn full">Download PDF Report</button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

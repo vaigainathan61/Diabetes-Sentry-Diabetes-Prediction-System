@@ -1,0 +1,140 @@
+
+
+:root {
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    --accent: #3b82f6;
+    --glass: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.1);
+    --text: #f8fafc;
+}
+
+body {
+    margin: 0; font-family: 'Inter', sans-serif;
+    background: var(--bg-gradient); color: var(--text);
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+}
+
+section { display: none; width: 100%; max-width: 1100px; padding: 20px; }
+section.active { display: block; animation: fadeIn 0.5s ease; }
+
+.glass-card {
+    background: var(--glass); backdrop-filter: blur(12px);
+    border: 1px solid var(--border); border-radius: 24px;
+    padding: 2.5rem; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.grid-form { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.input-field label { display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase; }
+input {
+    width: 100%; background: rgba(0,0,0,0.2); border: 1px solid var(--border);
+    padding: 12px; border-radius: 12px; color: white; outline: none;
+}
+
+.main-btn {
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+    color: white; border: none; padding: 15px 30px; border-radius: 12px;
+    font-weight: 700; cursor: pointer; transition: 0.3s;
+}
+.hidden { display: none !important; }
+
+.toggle-text {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    text-align: center;
+}
+
+.toggle-text a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.error-msg {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ef4444;
+    margin-bottom: 15px;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+input:invalid {
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+/* Dashboard Specifics */
+.dashboard-layout { display: grid; grid-template-columns: 400px 1fr; gap: 25px; }
+.gauge-wrapper { position: relative; margin: 20px 0; }
+.gauge-labels { 
+    display: flex; justify-content: space-between; 
+    font-size: 0.7rem; font-weight: bold; padding: 0 15px; color: #64748b;
+}
+
+.status-pill {
+    display: inline-block; padding: 6px 20px; border-radius: 50px;
+    font-size: 0.8rem; font-weight: bold; background: #3b82f6;
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Add this to the bottom of your style.css */
+.hidden { 
+    display: none !important; 
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.login-box {
+    transition: all 0.3s ease;
+}
+/* ===== FIXED FULL-COLOR PDF MODE ===== */
+.pdf-mode {
+  background: #0f172a !important;
+}
+
+.pdf-mode .glass-card {
+  background: #020617 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  box-shadow: none !important;
+}
+
+.pdf-mode h1,
+.pdf-mode h2,
+.pdf-mode h3,
+.pdf-mode p,
+.pdf-mode li,
+.pdf-mode span,
+.pdf-mode label {
+  color: #f8fafc !important;
+}
+
+.pdf-mode .status-pill {
+  color: #ffffff !important;
+}
+
+.pdf-mode .gauge-labels span {
+  color: #e5e7eb !important;
+}
+.back-button {
+    cursor: pointer;
+    font-size: 16px;
+    color: #3b82f6; /* blue arrow */
+    margin-bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.2s;
+}
+
+.back-button:hover {
+    color: #1d4ed8; /* darker blue on hover */
+}
